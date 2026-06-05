@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Costco Date?</title>
+  <style>
+    body{margin:0;font-family:Arial,sans-serif;background:#f4f4f4;color:#222;text-align:center;padding:40px 20px}
+    h1{font-size:2.2rem;margin:30px 0}
+    button{font-size:1.8rem;padding:18px 50px;margin:15px;border:0;border-radius:15px;cursor:pointer}
+    .yes{background:#b00;color:#fff;animation:glow 1.2s infinite alternate;box-shadow:0 0 25px #ff0}
+    .no{background:#666;color:#ddd}
+    .page{display:none}
+    .active{display:block}
+    @keyframes glow{from{box-shadow:0 0 15px #f80}to{box-shadow:0 0 40px #ff0}}
+    #s2{width:85%;height:60px;accent-color:#b00}
+    canvas{border:12px solid #222;box-shadow:0 0 25px #000;background:#fff;max-width:100%}
+  </style>
+</head>
+<body>
+  <div id="p1" class="page active">
+    <h1>Do you want to go to Costco with me?</h1>
+    <button id="y1" class="yes">YES</button>
+    <button id="n1" class="no">no</button>
+  </div>
+
+  <div id="p2" class="page">
+    <h1>Do you want to share a glizzy?</h1>
+    <div style="font-size:160px;margin:20px 0">🌭</div>
+    <input type="range" id="s2" min="0" max="100" value="100">
+    <p style="font-size:24px;display:flex;justify-content:space-between;width:85%;margin:10px auto"><span>No</span><span>Yes 😍</span></p>
+    <button id="next2" class="yes">NEXT</button>
+  </div>
+
+  <div id="p3" class="page">
+    <h1>Do you want to get matching Costco sweaters?</h1>
+    <button id="y3" class="yes">YES</button>
+    <button id="n3" class="no">no</button>
+  </div>
+
+  <div id="p4" class="page">
+    <h1>Yay we're going to Costco!</h1>
+    <div style="font-size:52px;font-weight:900;color:#b00;letter-spacing:8px;margin:15px 0">COSTCO</div>
+    <canvas id="c" width="440" height="310"></canvas>
+  </div>
+
+  <script>
+    function show(n){
+      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+      document.getElementById('p'+n).classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded',()=>{
+      const y1=document.getElementById('y1'), n1=document.getElementById('n1');
+      y1.onclick=()=>show(2);
+      n1.onmouseenter=()=>{
+        n1.style.position='absolute';
+        n1.style.left=Math.random()*(innerWidth-180)+'px';
+        n1.style.top=Math.random()*(innerHeight-100)+'px';
+      };
+
+      const s2=document.getElementById('s2');
+      s2.oninput=()=>{
+        if(s2.value<60)s2.value=100;
+      };
+      document.getElementById('next2').onclick=()=>show(3);
+
+      const y3=document.getElementById('y3'), n3=document.getElementById('n3');
+      y3.onclick=()=>{show(4); draw();};
+      n3.onmouseenter=()=>{
+        n3.style.position='absolute';
+        n3.style.left=Math.random()*(innerWidth-180)+'px';
+        n3.style.top=Math.random()*(innerHeight-100)+'px';
+      };
+
+      function draw(){
+        const ctx=document.getElementById('c').getContext('2d');
+        const g=ctx.createLinearGradient(0,0,0,170);
+        g.addColorStop(0,'#ff4400');
+        g.addColorStop(1,'#ffaa00');
+        ctx.fillStyle=g;
+        ctx.fillRect(0,0,440,170);
+
+        ctx.fillStyle='#ffee00';
+        ctx.beginPath();
+        ctx.arc(310,90,42,0,Math.PI*2);
+        ctx.fill();
+
+        ctx.fillStyle='#0088ff';
+        ctx.fillRect(0,170,440,140);
+
+        ctx.fillStyle='#0066cc';
+        for(let i=0;i<6;i++){
+          ctx.fillRect(20+i*65,185+i*16,55,12);
+        }
+
+        ctx.fillStyle='#ffee00';
+        ctx.font='bold 32px Arial';
+        ctx.fillText('8-BIT SUNSET',20,290);
+      }
+    });
+  </script>
+</body>
+</html>
