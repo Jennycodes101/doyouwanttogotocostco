@@ -2,47 +2,68 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Costco Date?</title>
   <style>
-    body{margin:0;font-family:Arial,sans-serif;background:#f4f4f4;color:#222;text-align:center;padding:40px 20px}
-    h1{font-size:2.2rem;margin:30px 0}
-    button{font-size:1.8rem;padding:18px 50px;margin:15px;border:0;border-radius:15px;cursor:pointer}
-    .yes{background:#b00;color:#fff;animation:glow 1.2s infinite alternate;box-shadow:0 0 25px #ff0}
-    .no{background:#666;color:#ddd}
-    .page{display:none}
+    body{margin:0;font-family:Arial,sans-serif;background:#000;color:#fff;text-align:center;padding:20px;min-height:100vh;display:flex;align-items:center;justify-content:center}
+    h1{font-size:2.2rem;margin:30px auto;max-width:90%;text-shadow:0 0 20px #ff00ff,0 0 40px #00ffff,0 0 60px #ff00ff;animation:neonPulse 2s infinite alternate}
+    .hearts{font-size:2.5rem;margin:20px 0;animation:heartFloat 3s ease-in-out infinite}
+    button{font-size:1.8rem;padding:18px 50px;margin:15px;border:0;border-radius:15px;cursor:pointer;transition:all 0.3s}
+    .yes{background:#ff0080;color:#fff;animation:neonGlow 1.2s infinite alternate;box-shadow:0 0 30px #ff00ff,0 0 50px #00ffff;text-shadow:0 0 10px #fff}
+    .no{background:#333;color:#fff;border:2px solid #666}
+    .page{display:none;width:100%;max-width:600px}
     .active{display:block}
-    @keyframes glow{from{box-shadow:0 0 15px #f80}to{box-shadow:0 0 40px #ff0}}
-    #s2{width:85%;height:60px;accent-color:#b00}
-    canvas{border:12px solid #222;box-shadow:0 0 25px #000;background:#fff;max-width:100%}
-    .logo{display:block;margin:0 auto 10px;max-width:320px;width:80%;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,0.18)}
+    @keyframes neonGlow{from{box-shadow:0 0 20px #ff00ff,0 0 40px #00ffff,0 0 60px #ff0080}to{box-shadow:0 0 40px #ff00ff,0 0 70px #00ffff,0 0 100px #ff0080}}
+    @keyframes neonPulse{from{text-shadow:0 0 20px #ff00ff,0 0 40px #00ffff,0 0 60px #ff00ff}to{text-shadow:0 0 30px #ff00ff,0 0 60px #00ffff,0 0 90px #ff00ff}}
+    @keyframes heartFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+    #s2{width:85%;height:60px;accent-color:#ff0080}
+    canvas{border:12px solid #00ffff;box-shadow:0 0 40px #ff00ff;background:#fff;max-width:100%}
+    .logo{display:block;margin:0 auto 20px;max-width:320px;width:80%;border-radius:8px;box-shadow:0 0 30px #ff00ff}
+    .container{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}
   </style>
 </head>
 <body>
   <div id="p1" class="page active">
-    <img src="costco-logo.svg" alt="Costco Wholesale" class="logo">
-    <h1>Do you want to go to Costco with me?</h1>
-    <button id="y1" class="yes">YES</button>
-    <button id="n1" class="no">no</button>
+    <div class="container">
+      <img src="costco-logo.svg" alt="Costco Wholesale" class="logo">
+      <div class="hearts">💕 💖 💕 💖 💕</div>
+      <h1>Do you want to go to Costco with me?</h1>
+      <div class="hearts">💗 💝 💗 💝 💗</div>
+      <button id="y1" class="yes">YES</button>
+      <button id="n1" class="no">no</button>
+    </div>
   </div>
 
   <div id="p2" class="page">
-    <h1>Do you want to share a glizzy?</h1>
-    <div style="font-size:160px;margin:20px 0">🌭</div>
-    <input type="range" id="s2" min="0" max="100" value="100">
-    <p style="font-size:24px;display:flex;justify-content:space-between;width:85%;margin:10px auto"><span>No</span><span>Yes 😍</span></p>
-    <button id="next2" class="yes">NEXT</button>
+    <div class="container">
+      <div class="hearts">💕 💖 💕</div>
+      <h1>Do you want to share a glizzy?</h1>
+      <div style="font-size:160px;margin:20px 0">🌭</div>
+      <div class="hearts">💗 💝 💗</div>
+      <input type="range" id="s2" min="0" max="100" value="100">
+      <p style="font-size:24px;display:flex;justify-content:space-between;width:85%;margin:10px auto"><span>No</span><span>Yes 😍</span></p>
+      <button id="next2" class="yes">NEXT</button>
+    </div>
   </div>
 
   <div id="p3" class="page">
-    <h1>Do you want to get matching Costco sweaters?</h1>
-    <button id="y3" class="yes">YES</button>
-    <button id="n3" class="no">no</button>
+    <div class="container">
+      <div class="hearts">💕 💖 💕 💖 💕</div>
+      <h1>Do you want to get matching Costco sweaters?</h1>
+      <div class="hearts">💗 💝 💗 💝 💗</div>
+      <button id="y3" class="yes">YES</button>
+      <button id="n3" class="no">no</button>
+    </div>
   </div>
 
   <div id="p4" class="page">
-    <h1>Yay we're going to Costco!</h1>
-    <div style="font-size:52px;font-weight:900;color:#b00;letter-spacing:8px;margin:15px 0">COSTCO</div>
-    <canvas id="c" width="440" height="310"></canvas>
+    <div class="container">
+      <div class="hearts">💕 💖 💗 💝 💕 💖 💗 💝</div>
+      <h1>Yay we're going to Costco!</h1>
+      <div style="font-size:52px;font-weight:900;color:#ff0080;letter-spacing:8px;margin:15px 0;text-shadow:0 0 20px #ff00ff,0 0 40px #00ffff">COSTCO</div>
+      <canvas id="c" width="440" height="310"></canvas>
+      <div class="hearts">💕 💖 💗 💝 💕 💖 💗 💝</div>
+    </div>
   </div>
 
   <script>
